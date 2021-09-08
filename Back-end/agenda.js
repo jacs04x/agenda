@@ -8,8 +8,8 @@ const AgendaSchema = new Schema({
     apellidos: { type: String, require },
     fecha_nacimiento: { type: Date, require },
     foto: {
-        data: Buffer,
-        contentType: String
+        name: String,
+        path: String
     },
     telefono: [{
         alias: { type: String },

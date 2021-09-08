@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import { Contacto } from '../_models/contacto';
 
 
@@ -7,5 +9,15 @@ import { Contacto } from '../_models/contacto';
 })
 export class AgendaService {
 
-  constructor() { }
+  API_URL = 'http://localhost:3000'
+
+  constructor(private httpC: HttpClient) { }
+
+  getAgenda(){
+    return this.httpC.get(this.API_URL+'/agenda')
+  }
+
+  
+
+
 }

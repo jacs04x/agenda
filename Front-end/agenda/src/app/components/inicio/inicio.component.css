@@ -1,0 +1,29 @@
+.container-fluid {
+    padding: 0px;
+    min-height: calc(85vh - 20px);
+}
+
+h1 {
+    font-size: 25px;
+}
+
+.padhr {
+    padding: 20px;
+    left: auto;
+    right: auto;
+}
+
+hr {
+    width: 300px;
+    margin: auto;
+}
+
+.centro {
+    margin-top: 15%;
+}
+
+@media (max-width: 360px) {
+    .centro {
+        margin-top: 20%
+    }
+}

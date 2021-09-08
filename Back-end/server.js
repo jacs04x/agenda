@@ -15,18 +15,23 @@ app.get('/agenda', async(req, res) => {
     res.send(agenda)
 })
 
-app.post('/new', async(req, res) => {
+app.get('/contacto/:id', async(req, res) => {
+    const contacto = await Agenda.findById(req.params.id).lean()
+    res.send(contacto)
+})
+
+app.post('/contacto/new', async(req, res) => {
     const { contact } = req.body
     const contacto = new Agenda({ contact })
     await contacto.save()
 })
 
-app.put('/edit/:id', async(req, res) => {
+app.put('/contacto/edit/:id', async(req, res) => {
     const { contacto } = req.body
     await Todo.findByIdAndUpdate(req.params.id, { contacto })
 })
 
-app.delete('/delete/:id', async(req, res) => {
+app.delete('/contacto/delete/:id', async(req, res) => {
     await Todo.findByIdAndDelete(req.params.id)
 })
 app.listen(PORT, () => {

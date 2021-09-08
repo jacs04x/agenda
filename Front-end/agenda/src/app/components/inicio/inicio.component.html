@@ -1,1 +1,26 @@
-<p>inicio works!</p>
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid" *ngIf="contactos.length == 0">
+
+    <div class="alert  alert-danger text-center">
+        <h1>Sin Contactos</h1>
+    </div>
+
+    <div class="text-center centro" id="agregar">
+
+        <h3>Crear contacto</h3>
+        <div class="padhr">
+            <hr>
+        </div>
+        <a href="nuevo"><button class="btn btn-success" (click)="createContacto()" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="contactos.length > 0">
+
+</div>
+
+<div class="text-center">
+    <app-footer></app-footer>
+</div>

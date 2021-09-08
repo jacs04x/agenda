@@ -12,6 +12,12 @@ import { ForbidenComponent } from './components/forbiden/forbiden.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NuevoComponent } from './components/nuevo/nuevo.component';
+import { EditarComponent } from './components/editar/editar.component';
+import { TelefonosComponent } from './components/telefonos/telefonos.component';
+import { DireccionComponent } from './components/direccion/direccion.component';
+import { NavbareditarComponent } from './components/navbareditar/navbareditar.component';
+import { NavbarnuevoComponent } from './components/navbarnuevo/navbarnuevo.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AboutComponent,
     FooterComponent,
     NavbarComponent,
-    ForbidenComponent
+    ForbidenComponent,
+    NuevoComponent,
+    EditarComponent,
+    TelefonosComponent,
+    DireccionComponent,
+    NavbareditarComponent,
+    NavbarnuevoComponent
   ],
   imports: [
     BrowserModule,
