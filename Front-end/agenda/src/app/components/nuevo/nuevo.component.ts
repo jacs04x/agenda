@@ -18,6 +18,7 @@ export class NuevoComponent implements OnInit {
 
   contactoForm: FormGroup | any
   submitted = false
+  datos : string
 
   constructor(
     private contactoService: ContactoService,
@@ -62,6 +63,19 @@ export class NuevoComponent implements OnInit {
     }
 
 
+  }
+
+  selected(event: Event){
+    const file = (event.target as HTMLInputElement).files[0];
+      this.contactoForm.patchValue( {fotografia : file})
+      const allowedMimeTypes = ["image/png","image/jpeg", "image/jpg"]
+      if(file && allowedMimeTypes.includes(file.type)){
+        const reader = new FileReader()
+        reader.onload = () => {
+          this.datos = reader.result as string
+        }
+        reader.readAsDataURL(file)
+      }
   }
 
   regresar(){
