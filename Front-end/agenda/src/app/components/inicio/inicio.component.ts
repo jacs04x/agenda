@@ -13,7 +13,7 @@ import * as $ from 'jquery';
 })
 export class InicioComponent implements OnInit {
 
-  contactos : Contacto [] | any
+  agenda : Contacto [] | any
   oculto = false
 
   constructor(
@@ -30,7 +30,7 @@ export class InicioComponent implements OnInit {
 
     this.agendaService.getAgenda().subscribe(
       res => {
-        this.contactos = res
+        this.agenda = res
         console.log(res)
       },
       err => {

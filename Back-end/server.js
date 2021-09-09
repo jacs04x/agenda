@@ -23,9 +23,9 @@ app.get('/contacto/:id', async(req, res) => {
 
 app.post('/contacto/new', async(req, res) => {
     const { contact } = req.body
-    console.log(req.body)
     const contacto = new Agenda(req.body)
     await contacto.save()
+    res.send("ok")
 })
 
 app.put('/contacto/edit/:id', async(req, res) => {

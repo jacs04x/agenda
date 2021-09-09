@@ -3,13 +3,13 @@ import {Direccion} from '../_models/direccion';
 import {Fotografia} from '../_models/fotografia';
 
 export class Contacto{
-    _id: number | undefined
-    nombre: String | undefined
-    apellidos : String | undefined
-    fecha_nacimiento: Date | undefined
-    fotografia: Fotografia | undefined
-    telefono: Telefono [] | undefined
-    direccion : Direccion | undefined
+    _id: number 
+    nombre: String 
+    apellidos : String 
+    fecha_nacimiento: Date
+    fotografia: Fotografia 
+    telefono: Telefono [] 
+    direccion : Direccion 
 
 
 

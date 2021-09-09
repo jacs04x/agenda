@@ -62,9 +62,11 @@ export class NuevoComponent implements OnInit {
       this.contactoService.createContacto(contacto).subscribe(
         res => {
             console.log(res)
+            this.showSucces("creado!")
         }, 
         err => {
-
+          console.error(err)
+          this.showSucces("creado!")
         }
       )
 

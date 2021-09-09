@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 
-<div class="container-fluid" *ngIf="contactos.length == 0">
+<div class="container-fluid" *ngIf="agenda.length == 0">
 
     <div class="alert  alert-danger text-center">
         <h1>Sin Contactos</h1>
@@ -17,8 +17,30 @@
     </div>
 </div>
 
-<div class="container-fluid" *ngIf="contactos.length > 0">
+<div class="container-fluid" *ngIf="agenda.length > 0">
+    <div class="text-center centro2">
 
+        <h3>Crear contacto</h3>
+        <div class="padhr">
+            <hr>
+        </div>
+        <a href="nuevo"><button class="btn btn-success" (click)="createContacto()" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
+    </div>
+    <div class="col-md-4 mx-auto " *ngFor="let contacto of agenda">
+        <div class="text-center contactos">
+            <div class="row mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        {{contacto.nombre}} {{contacto.apellidos}}
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-warning">Editar</button>
+                        <button class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="text-center">
