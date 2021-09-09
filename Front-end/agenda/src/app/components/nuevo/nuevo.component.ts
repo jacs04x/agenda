@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import * as $ from 'jquery';
+import { Telefono } from 'src/app/_models/telefono';
 
 
 @Component({
@@ -51,14 +52,21 @@ export class NuevoComponent implements OnInit {
 
       console.log(this.contactoForm.value.fotografia)
 
-      /*
-      const contacto = new Contacto(this.contactoForm.value.nombre,
+      
+      const contacto = new Contacto(null,this.contactoForm.value.nombre,
                                     this.contactoForm.value.apellidos,
                                     this.contactoForm.value.fecha_nacimiento,
-                                    , 
+                                    new Fotografia("name", "path"), 
                                     [], 
                                     new Direccion("","","","","","",""))
-      */
+      this.contactoService.createContacto(contacto).subscribe(
+        res => {
+            console.log(res)
+        }, 
+        err => {
+
+        }
+      )
 
     }
 

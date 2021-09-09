@@ -7,7 +7,7 @@ const AgendaSchema = new Schema({
     nombre: { type: String, require },
     apellidos: { type: String, require },
     fecha_nacimiento: { type: Date, require },
-    foto: {
+    fotografia: {
         name: String,
         path: String
     },

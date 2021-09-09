@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/agenda', async(req, res) => {
-    const agenda = await Agenda.find({}).sort({ date: 'desc' }).lean()
+    const agenda = await Agenda.find()
+
     res.send(agenda)
 })
 
@@ -22,7 +23,8 @@ app.get('/contacto/:id', async(req, res) => {
 
 app.post('/contacto/new', async(req, res) => {
     const { contact } = req.body
-    const contacto = new Agenda({ contact })
+    console.log(req.body)
+    const contacto = new Agenda(req.body)
     await contacto.save()
 })
 
