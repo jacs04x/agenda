@@ -1,1 +1,41 @@
-<p>editar works!</p>
+<app-navbareditar></app-navbareditar>
+<div class="container-fluid">
+
+    <div id="myTabContent" class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card ">
+                <ul class="nav nav-tabs  ">
+                    <li class="nav-item">
+                        <a href="editar?id={{contacto._id}}" class="nav-link">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="direccion?id={{contacto._id}}" class="nav-link">Dirección</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="telefono?id={{contacto._id}}" class="nav-link">Teléfono</a>
+                    </li>
+                </ul>
+                <form>
+                    <div class="card-header">
+                        <h1>Editar Contacto</h1>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="form-group">
+                            <label for="nombre">Nombre <span style="color: red;">*</span> </label>
+                            <input value="{{contacto.nombre}}" id="nombre">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+<div class="text-center">
+    <app-footer></app-footer>
+</div>

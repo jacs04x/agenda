@@ -6,6 +6,8 @@ import { ContactoService } from 'src/app/_services/contacto.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+import {Router, ActivatedRoute} from '@angular/router'
+
 import * as $ from 'jquery';
 import { Telefono } from 'src/app/_models/telefono';
 
@@ -23,7 +25,9 @@ export class NuevoComponent implements OnInit {
 
   constructor(
     private contactoService: ContactoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
@@ -62,11 +66,17 @@ export class NuevoComponent implements OnInit {
       this.contactoService.createContacto(contacto).subscribe(
         res => {
             console.log(res)
-            this.showSucces("creado!")
+            this.showSucces("agregado!")
         }, 
         err => {
-          console.error(err)
-          this.showSucces("creado!")
+          console.log(JSON.stringify(err))
+          if(err.statusText=="OK" && err.status==200){
+            
+            this.showSucces("agregado!")
+            this.inicio()
+          }else{
+            this.showFail("Algo salio mal...")
+          }
         }
       )
 
@@ -90,8 +100,13 @@ export class NuevoComponent implements OnInit {
 
   regresar(){
     this.contactoForm.reset()
-    
   }
+
+  inicio(){
+    this.router.navigate(['/'])
+  }
+
+
 
   get f () {return this.contactoForm.controls}
 

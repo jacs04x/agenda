@@ -1,5 +1,5 @@
 .container-fluid {
-    margin-top: 5%;
+    margin-top: 3%;
     min-height: calc(75vh);
 }
 
@@ -18,4 +18,8 @@ h1 {
 
 .lft {
     margin-bottom: 5%;
+}
+
+label {
+    margin-top: 5%;
 }

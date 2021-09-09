@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 const Agenda = require('./agenda')
 app.use(cors())
 
-app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(bodyParser.json())
 
 app.get('/agenda', async(req, res) => {

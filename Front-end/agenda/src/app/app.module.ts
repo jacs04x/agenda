@@ -18,6 +18,7 @@ import { TelefonosComponent } from './components/telefonos/telefonos.component';
 import { DireccionComponent } from './components/direccion/direccion.component';
 import { NavbareditarComponent } from './components/navbareditar/navbareditar.component';
 import { NavbarnuevoComponent } from './components/navbarnuevo/navbarnuevo.component';
+import { TelefonoComponent } from './components/telefono/telefono.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NavbarnuevoComponent } from './components/navbarnuevo/navbarnuevo.compo
     TelefonosComponent,
     DireccionComponent,
     NavbareditarComponent,
-    NavbarnuevoComponent
+    NavbarnuevoComponent,
+    TelefonoComponent
   ],
   imports: [
     BrowserModule,

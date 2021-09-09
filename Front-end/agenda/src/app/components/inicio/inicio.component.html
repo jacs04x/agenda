@@ -13,7 +13,7 @@
         <div class="padhr">
             <hr>
         </div>
-        <a href="nuevo"><button class="btn btn-success" (click)="createContacto()" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
+        <a href="nuevo"><button class="btn btn-success"  >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
     </div>
 </div>
 
@@ -24,9 +24,9 @@
         <div class="padhr">
             <hr>
         </div>
-        <a href="nuevo"><button class="btn btn-success" (click)="createContacto()" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
+        <a href="nuevo"><button class="btn btn-success" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
     </div>
-    <div class="col-md-4 mx-auto " *ngFor="let contacto of agenda">
+    <div class="col-md-4 mx-auto contactos" *ngFor="let contacto of agenda">
         <div class="text-center contactos">
             <div class="row mx-auto">
                 <div class="card">
@@ -34,8 +34,8 @@
                         {{contacto.nombre}} {{contacto.apellidos}}
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-warning">Editar</button>
-                        <button class="btn btn-danger">Eliminar</button>
+                        <button class="btn btn-warning" (click)="editar(contacto)">Editar</button>
+                        <button class="btn btn-danger" (click)="eliminar(contacto)">Eliminar</button>
                     </div>
                 </div>
             </div>
