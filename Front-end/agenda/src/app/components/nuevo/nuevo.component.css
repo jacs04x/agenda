@@ -1,10 +1,11 @@
 .container-fluid {
-    margin-top: 3%;
-    min-height: calc(75vh);
+    margin-top: 1%;
+    margin-bottom: 10px;
+    min-height: calc(75vh -20px);
 }
 
 h1 {
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .card-footer {

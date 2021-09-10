@@ -1,0 +1,10 @@
+.container-fluid {
+    min-height: calc(85vh - 20px);
+}
+
+hr {
+    color: #593196;
+    padding: 1px;
+}
+
+.showInputField {}

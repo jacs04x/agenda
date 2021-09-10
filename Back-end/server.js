@@ -29,12 +29,24 @@ app.post('/contacto/new', async(req, res) => {
 })
 
 app.put('/contacto/edit/:id', async(req, res) => {
-    const { contacto } = req.body
-    await Todo.findByIdAndUpdate(req.params.id, { contacto })
+    console.log(req.params.id)
+    console.log(req.body)
+
+    await Agenda.findByIdAndUpdate(req.params.id, {
+        nombre: req.body.nombre,
+        apellidos: req.body.apellidos,
+        fecha_nacimiento: req.body.fecha_nacimiento,
+        fotografia: req.body.fotografia,
+        telefono: req.body.telefono,
+        direccion: req.body.direccion
+    })
+
+    res.send("OK")
 })
 
 app.delete('/contacto/delete/:id', async(req, res) => {
-    await Todo.findByIdAndDelete(req.params.id)
+    await Agenda.findByIdAndDelete(req.params.id)
+    res.send("OK")
 })
 app.listen(PORT, () => {
     console.log("Escuchando...")

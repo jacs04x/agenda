@@ -2,10 +2,7 @@
     min-height: calc(85vh - 20px);
 }
 
-.card {
-    margin-top: 2%;
-}
-
-h1 {
-    font-size: 25px;
+hr {
+    color: #593196;
+    padding: 1px;
 }

@@ -1,6 +1,6 @@
 .container-fluid {
     padding: 0px;
-    min-height: calc(85vh - 20px);
+    min-height: calc(85vh - 40px);
 }
 
 h1 {

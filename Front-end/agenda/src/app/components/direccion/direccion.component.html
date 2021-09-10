@@ -1,1 +1,94 @@
-<p>direccion works!</p>
+<app-navbareditar></app-navbareditar>
+
+<div class="container-fluid">
+
+    <div id="myTabContent" class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card ">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="editar?id={{contacto._id}}" class="nav-link">Contacto </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="direccion?id={{contacto._id}}" class="nav-link">Dirección <hr></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="telefono?id={{contacto._id}}" class="nav-link">Teléfonos</a>
+                    </li>
+                </ul>
+
+                <form [formGroup]="direccionForm" (ngSubmit)="actualizarDireccion()">
+                    <div class="card-body ">
+                        <div class="form-group">
+                            <label for="">Calle <span style="color: red;">*</span> </label>
+                            <input type="text" id="calle" formControlName="calle" class="form-control" placeholder="{{contacto.direccion.calle}}" [ngClass]="{ 'is-invalid': submitted && f.calle.errors }">
+                            <div *ngIf="submitted && f.calle.errors" class="invalid-feedback">
+                                <div *ngIf="f.calle.errors.required">Es necesario ingresar una calle</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Número exterior <span style="color: red;">*</span> </label>
+                            <input type="text" id="numero_exterior" formControlName="numero_exterior" class="form-control" placeholder="{{contacto.direccion.numero_exterior}}" [ngClass]="{ 'is-invalid': submitted && f.numero_exterior.errors }">
+                            <div *ngIf="submitted && f.numero_exterior.errors" class="invalid-feedback">
+                                <div *ngIf="f.numero_exterior.errors.required">Es necesario ingresar un numero exterior</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Número interior <span style="color: red;">*</span> </label>
+                            <input type="text" id="numero_interior" formControlName="numero_interior" class="form-control" placeholder="{{contacto.direccion.numero_interior}}" [ngClass]="{ 'is-invalid': submitted && f.numero_interior.errors }">
+                            <div *ngIf="submitted && f.numero_interior.errors" class="invalid-feedback">
+                                <div *ngIf="f.numero_interior.errors.required">Es necesario ingresar un numero interior</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Colonia <span style="color: red;">*</span> </label>
+                            <input type="text" id="colonia" formControlName="colonia" class="form-control" placeholder="{{contacto.direccion.colonia}}" [ngClass]="{ 'is-invalid': submitted && f.colonia.errors }">
+                            <div *ngIf="submitted && f.colonia.errors" class="invalid-feedback">
+                                <div *ngIf="f.colonia.errors.required">Es necesario ingresar una colonia</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Municipio <span style="color: red;">*</span> </label>
+                            <input type="text" id="municipio" formControlName="municipio" class="form-control" placeholder="{{contacto.direccion.municipio}}" [ngClass]="{ 'is-invalid': submitted && f.municipio.errors }">
+                            <div *ngIf="submitted && f.municipio.errors" class="invalid-feedback">
+                                <div *ngIf="f.municipio.errors.required">Es necesario ingresar un municipio</div>
+                            </div>
+                        </div>
+                        <div class="form-group has-success">
+                            <label>Estado <span style="color: red;">*</span> </label>
+                            <select class="form-control " id="estado" formControlName="estado" [ngClass]="{ 'is-invalid': submitted && f.estado.errors }">
+                                <option value="" disabled selected hidden>{{contacto.direccion.estado}}</option>
+                                <ng-container *ngFor="let estado of estados">
+                                    <option >{{estado.nombre}}</option>
+                                </ng-container>
+                            </select>
+                            <div *ngIf="submitted && f.estado.errors" class="invalid-feedback">
+                                <div *ngIf="f.estado.errors.required">Es necesario ingresar un estado</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Referencias <span style="color: red;">*</span></label>
+                            <div *ngIf="submitted && f.referencias.errors" class="invalid-feedback">
+                                <div *ngIf="f.referencias.errors.required">Es necesario ingresar una referencia</div>
+                            </div>
+                            <textarea rows="4" id="referencias" formControlName="referencias" class="form-control" placeholder="{{contacto.direccion.referencias}}"></textarea>
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-success form-control">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="text-center">
+    <app-footer></app-footer>
+</div>

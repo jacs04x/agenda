@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AgendaService} from '../../_services/agenda.service'
+import {ContactoService} from '../../_services/contacto.service'
 import {Contacto} from '../../_models/contacto';
 import Swal from 'sweetalert2';
 import {Router, ActivatedRoute} from '@angular/router'
@@ -18,7 +19,8 @@ export class InicioComponent implements OnInit {
 
   constructor(
     private agendaService: AgendaService,
-    private router: Router
+    private router: Router,
+    private contactoService: ContactoService
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +48,39 @@ export class InicioComponent implements OnInit {
     this.router.navigate(["/editar"], {queryParams: {id: contacto._id}})
   }
 
-  eliminar(contacto: Contacto){
-    console.log(contacto)
+
+  eliminar(id: number){
+    Swal.fire({
+      title: '¿Eliminar?',
+      text: "No se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, elimina!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.contactoService.deleteContacto(id).subscribe(
+          res => {
+            this.getAgenda()
+          },
+          err => {
+            if(err.statusText=="OK" && err.status==200){
+            this.getAgenda()
+            }
+          }
+        )
+        Swal.fire(
+          'Eliminado!',
+          '',
+          'success'
+        )
+      }
+    })
   }
+
 
   
   showFail(message: string){
