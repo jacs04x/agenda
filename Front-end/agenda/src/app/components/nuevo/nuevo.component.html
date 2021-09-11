@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="nombre">Nombre <span style="color: red;">*</span> </label>
                         <div class=" mb-3">
-                            <input type="text" class="form-control" id="nombre" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+                            <input type="text" class="form-control" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
                             <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
                                 <div *ngIf="f.nombre.errors.required">Es necesario ingresar un nombre</div>
                             </div>
@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label for="apellidos">Apellidos <span style="color: red;">*</span> </label>
                         <div class=" mb-3">
-                            <input type="text" class="form-control" id="apellidos" formControlName="apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }">
+                            <input type="text" class="form-control" id="apellidos" formControlName="apellidos" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }">
                             <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
                                 <div *ngIf="f.apellidos.errors.required">Es necesario ingresar apellidos</div>
                             </div>

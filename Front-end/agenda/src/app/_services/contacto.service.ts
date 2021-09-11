@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { Contacto } from '../_models/contacto';
+import { Telefono } from '../_models/telefono';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class ContactoService {
 
   deleteContacto(id: number){
     return this.httpC.delete(this.API_URL+'/contacto/delete/'+id)
+  }
+
+  deleteTelefono(id: number, telefono: Telefono){
+    return this.httpC.put(this.API_URL+'/contacto/delete/'+id, telefono )
   }
 
 

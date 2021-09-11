@@ -19,6 +19,7 @@ app.get('/agenda', async(req, res) => {
 app.get('/contacto/:id', async(req, res) => {
     const contacto = await Agenda.findById(req.params.id).lean()
     res.send(contacto)
+    console.log(contacto)
 })
 
 app.post('/contacto/new', async(req, res) => {
@@ -42,6 +43,12 @@ app.put('/contacto/edit/:id', async(req, res) => {
     })
 
     res.send("OK")
+})
+
+app.put('/contacto/telefono/delete/:id', async(req, res) => {
+    await Agenda.findByIdAndUpdate(req.params.id, { $pull: req.body.telefono })
+    console.log("eliminando el telefono...")
+
 })
 
 app.delete('/contacto/delete/:id', async(req, res) => {

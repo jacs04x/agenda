@@ -5,6 +5,9 @@ import { FormatoTelefonos } from 'src/app/_models/formatoTelefonos';
 import {ContactoService} from 'src/app/_services/contacto.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-telefonos',
   templateUrl: './telefonos.component.html',
@@ -15,6 +18,10 @@ export class TelefonosComponent implements OnInit {
   contacto: Contacto | any
   catidad_de_telefonos: number = 0
   carrito_de_telefonos: FormatoTelefonos [] 
+  paraEnviar: Telefono [] 
+  nuevoForm : FormGroup 
+  alias: string | any
+  submitted = false
   constructor(
     private route: ActivatedRoute,
     private contactoService: ContactoService,
@@ -22,6 +29,14 @@ export class TelefonosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.carrito_de_telefonos= []
+    this.nuevoForm =this.formBuilder.group(
+      {
+        alias: ['',Validators.required],
+        tipo: ['', Validators.required],
+        numero: ['', Validators.required]
+      }
+    )
     this.route.queryParams.subscribe(params => {
       this.id = params.id;
     })
@@ -39,10 +54,89 @@ export class TelefonosComponent implements OnInit {
       
     )
   }
-
-  add(){
-    
+  addTelefono(){
+    this.catidad_de_telefonos +=1
+    this.submitted = true
+    if(this.nuevoForm.invalid){
+      this.showFail("hacen falta datos \n\n 😢")
+      return
+    }else {
+      this.carrito_de_telefonos.push(new FormatoTelefonos(this.catidad_de_telefonos,
+                 new Telefono(this.nuevoForm.value.alias, this.nuevoForm.value.tipo, this.nuevoForm.value.numero ),false, false))
+      this.showSucces("agregado!")
+    }
   }
+
+cancela(id: number){
+  for(let i of this.carrito_de_telefonos){
+    if (id == i.id){
+      i.cancelado = true
+      break
+    }
+  }
+  this.showSucces("Cancelado!")
+
+}
+eliminar(id: number){
+  for(let i of this.carrito_de_telefonos){
+    if (id == i.id){
+      i.eliminado = true
+      break
+    }
+  }
+  this.showSucces("Eliminado!")
+}
+
+eliminarDeBase(){
+  
+}
+
+registrar() {
+  var arr = []
+  if(this.carrito_de_telefonos.length == 0){
+    this.showFail("no hay nada que registrar")
+  }else{
+    for(let i of this.carrito_de_telefonos){
+      if(i.cancelado==false && i.eliminado == false ){
+        arr.push(i.telefono)
+      }
+    }
+  }
+  if(arr.length == 0){
+    this.showFail("no hay nada que registrar")
+  }else {
+    const contacto = new Contacto(this.contacto._id,
+                                  this.contacto.nombre,
+                                  this.contacto.apellidos, 
+                                  this.contacto.fecha_nacimiento, 
+                                  this.contacto.fotografia, 
+                                  this.contacto.telefono.concat(arr), 
+                                  this.contacto.direccion )
+    
+    console.log(contacto)
+  }
+  
+}
+  
+    
+  
+  
+
+  showFail(message: string){
+    Swal.fire({
+      icon: 'error',
+      title: message
+    })
+  }
+
+  showSucces(message: string){
+    Swal.fire({
+      icon: 'success',
+      title: message,
+    });
+  }
+
+  get f () {return this.nuevoForm.controls}
 
 
 

@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-6 mx-auto">
             <div class="card ">
                 <ul class="nav">
                     <li class="nav-item">
@@ -15,27 +15,107 @@
                         <a href="telefono?id={{contacto._id}}" class="nav-link">Teléfonos <hr></a>
                     </li>
                 </ul>
-                <form>
-                    <div class="card-body ">
-                        <div class="agregar text-center">
-                            <button class="btn btn-primary " (click)="add()">Agregar Teléfono <i class="fas fa-plus"></i> </button>
-                        </div>
-                        <div *ngIf="contacto.telefono.length == 0" class="text-center" style="padding: 20px;">
-                            No hay teléfonos registrados
-                        </div>
 
-                        <div *ngFor="let telefono of contacto.telefono">
+                <div class="card-body  mx-auto">
+                    <div class="card ">
+                        <form [formGroup]="nuevoForm" (ngSubmit)="addTelefono()">
+                            <div class="form-group">
+                                <label for="alias">Alias <span style="color: red;">*</span> </label>
+                                <div class=" mb-2">
+                                    <input type="text" class="form-control" id="alias" formControlName="alias" [ngClass]="{ 'is-invalid': submitted && f.alias.errors }">
+                                    <div *ngIf="submitted && f.alias.errors" class="invalid-feedback">
+                                        <div *ngIf="f.alias.errors.required">Es necesario ingresar un alias</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo">Tipo <span style="color: red;">*</span> </label>
+                                <div class=" mb-2">
+                                    <select id="tipo" class="form-control" formControlName="tipo" [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }">
+                                    
+                                    <option >Casa</option>
+                                    <option >Móvil</option>
+                                </select>
+                                    <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.tipo.errors.required">Es necesario ingresar un tipo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="numero">Numero:  <span style="color: red;">*</span> </label>
+                                <div class=" mb-2">
+                                    <input type="number" class="form-control" id="numero" formControlName="numero" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }">
+                                    <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
+                                        <div *ngIf="f.numero.errors.required">Es necesario ingresar un número</div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        </div>
+                            <button class="btn btn-primary ">Agregar</button>
 
+                        </form>
+                    </div>
+                    <br>
+                    <div *ngIf="carrito_de_telefonos.length == 0" class="text-center">
+                        No hay Telefonos para registrar
+                        <br>
+                        <br>
+                    </div>
+                    <div *ngIf="carrito_de_telefonos.length > 0" class="text-center">
+                        Por Registrar
+                        <br>
+                        <br>
                     </div>
 
-                </form>
+                    <div *ngIf="carrito_de_telefonos.length > 0">
+                        <div *ngFor="let telefono of carrito_de_telefonos">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="{{telefono.telefono.alias}}" *ngIf="!telefono.eliminado ">
+                                <input type="text" class="form-control" placeholder="{{telefono.telefono.tipo}}" *ngIf="!telefono.eliminado">
+                                <input type="text" class="form-control" placeholder="{{telefono.telefono.numero}}" *ngIf="!telefono.eliminado">
+                                <button class="btn btn-warning" *ngIf="!telefono.cancelado && !telefono.eliminado" (click)="cancela(telefono.id)">Cancelar</button>
+                                <div *ngIf="telefono.cancelado && !telefono.eliminado">
+                                    <button class="btn btn-danger" *ngIf="telefono.cancelado " (click)="eliminar(telefono.id)">Eliminar</button>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div *ngIf="contacto.telefono.length==0 " class="text-center " style="padding: 20px; ">
+                        No hay teléfonos registrados
+                    </div>
+                    <div *ngIf="contacto.telefono.length> 0" class="text-center"> Registrados:
+                        <br>
+                        <br>
+                        <div *ngFor="let telefono of contacto.telefono">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="{{telefono.alias}}">
+                                <input type="text" class="form-control" placeholder="{{telefono.tipo}}">
+                                <input type="text" class="form-control" placeholder="{{telefono.numero}}">
+
+                                <button class="btn btn-danger">Eliminar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <button class="btn btn-success " style="float: right ;" (click)="registrar()">Registrar Teléfonos</button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
 
 </div>
+
+
 
 <div class="text-center">
     <app-footer></app-footer>
