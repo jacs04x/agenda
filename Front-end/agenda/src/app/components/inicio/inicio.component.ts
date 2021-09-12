@@ -5,6 +5,7 @@ import {Contacto} from '../../_models/contacto';
 import Swal from 'sweetalert2';
 import {Router, ActivatedRoute} from '@angular/router'
 import * as $ from 'jquery';
+import { Agenda } from 'src/app/_models/agenda';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class InicioComponent implements OnInit {
     this.agendaService.getAgenda().subscribe(
       res => {
         this.agenda = res
+        console.log(this.agenda)
       },
       err => {
         

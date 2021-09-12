@@ -55,15 +55,17 @@ export class TelefonosComponent implements OnInit {
     )
   }
   addTelefono(){
+
     this.catidad_de_telefonos +=1
     this.submitted = true
     if(this.nuevoForm.invalid){
-      this.showFail("hacen falta datos \n\n 😢")
+      this.showFail("Hacen falta datos \n\n 😢")
       return
     }else {
+
       this.carrito_de_telefonos.push(new FormatoTelefonos(this.catidad_de_telefonos,
                  new Telefono(this.nuevoForm.value.alias, this.nuevoForm.value.tipo, this.nuevoForm.value.numero ),false, false))
-      this.showSucces("agregado!")
+      this.showSucces("Agregado!")
     }
   }
 
@@ -81,20 +83,35 @@ eliminar(id: number){
   for(let i of this.carrito_de_telefonos){
     if (id == i.id){
       i.eliminado = true
+      
       break
     }
   }
   this.showSucces("Eliminado!")
 }
 
-eliminarDeBase(){
-  
+eliminarDeBase(id:number, t: Telefono){
+  console.log(id) 
+  const telefono = new Telefono(t.alias, t.tipo, t.numero)
+  console.log(telefono)
+  this.contactoService.deleteTelefono(id, telefono).subscribe(
+    res => {
+
+    },
+    err => {
+      if(err.statusText=="OK" && err.status==200){
+        this.showSucces("Eliminadoa!")
+      }else {
+        this.showFail("Algo salio mal...")
+      }
+    }
+  )
 }
 
 registrar() {
   var arr = []
   if(this.carrito_de_telefonos.length == 0){
-    this.showFail("no hay nada que registrar")
+    this.showFail("No hay nada que registrar")
   }else{
     for(let i of this.carrito_de_telefonos){
       if(i.cancelado==false && i.eliminado == false ){
@@ -103,7 +120,7 @@ registrar() {
     }
   }
   if(arr.length == 0){
-    this.showFail("no hay nada que registrar")
+    this.showFail("No hay nada que registrar")
   }else {
     const contacto = new Contacto(this.contacto._id,
                                   this.contacto.nombre,
@@ -113,7 +130,19 @@ registrar() {
                                   this.contacto.telefono.concat(arr), 
                                   this.contacto.direccion )
     
-    console.log(contacto)
+    this.contactoService.editContacto(contacto).subscribe(
+      res => {
+        
+      },
+      err => {
+        if(err.statusText=="OK" && err.status==200){
+        this.showSucces("Teléfonos Registrados")
+        console.log(err)
+        this.getInformacioncontacto()
+        this.carrito_de_telefonos = []
+        }
+      }
+    )
   }
   
 }

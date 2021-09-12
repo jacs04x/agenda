@@ -6,9 +6,11 @@ import { NuevoComponent } from './components/nuevo/nuevo.component';
 import { DireccionComponent } from './components/direccion/direccion.component';
 
 import { TelefonosComponent } from './components/telefonos/telefonos.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {path : '', component: InicioComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'direccion', component: DireccionComponent},
   {path: 'editar', component: EditarComponent},
   {path: 'nuevo', component: NuevoComponent},

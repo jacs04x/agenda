@@ -13,7 +13,6 @@ export class ContactoService {
 
   constructor(private httpC: HttpClient) { }
   
-
   getContacto(id: number){
     return this.httpC.get(this.API_URL+'/contacto/'+id)
   }
@@ -30,10 +29,9 @@ export class ContactoService {
     return this.httpC.delete(this.API_URL+'/contacto/delete/'+id)
   }
 
-  deleteTelefono(id: number, telefono: Telefono){
-    return this.httpC.put(this.API_URL+'/contacto/delete/'+id, telefono )
+  deleteTelefono(id: number, telefono: Telefono){    
+    console.log(telefono)
+    return this.httpC.put(this.API_URL+'/contacto/telefono/delete/'+id, telefono )
   }
-
-
 
 }

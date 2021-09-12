@@ -4,7 +4,8 @@ const app = express();
 const db = require('./conexion');
 var cors = require('cors')
 const PORT = process.env.PORT || 3000;
-const Agenda = require('./agenda')
+const Agenda = require('./agenda');
+const { ObjectId } = require('bson');
 app.use(cors())
 
 
@@ -46,8 +47,11 @@ app.put('/contacto/edit/:id', async(req, res) => {
 })
 
 app.put('/contacto/telefono/delete/:id', async(req, res) => {
-    await Agenda.findByIdAndUpdate(req.params.id, { $pull: req.body.telefono })
-    console.log("eliminando el telefono...")
+    console.log(req.params.id)
+    console.log(req.body.telefono)
+    res.send("consultado")
+
+    res.send("ok")
 
 })
 
