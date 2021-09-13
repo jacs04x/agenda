@@ -57,53 +57,61 @@
 
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary ">Agregar</button>
+                                <button class="btn btn-primary ">Agregar <i class="fas fa-plus"></i></button>
                             </div>
                         </form>
                     </div>
                     <br>
                     <br>
+                    <p class="text-center">Por Registrar</p>
+
                     <div *ngIf="carrito_de_telefonos.length == 0" class="text-center">
                         No hay Telefonos para registrar
                         <br>
-                        <br>
                     </div>
+
                     <div *ngIf="carrito_de_telefonos.length > 0" class="text-center">
-                        Por Registrar
+
                         <br>
-                        <br>
+                        <div *ngFor="let i of carrito_de_telefonos">
+                            <div *ngIf="i.cancelado == true && i.eliminado == true">
+                                No hay Telefonos para registrar
+                            </div>
+                        </div>
+
                     </div>
 
                     <div *ngIf="carrito_de_telefonos.length > 0">
                         <div *ngFor="let telefono of carrito_de_telefonos">
-                            <div class="input-group mb-3">
+                            <div class="input-group">
 
-                                <p type="text" class="form-control" *ngIf="!telefono.eliminado ">{{telefono.telefono.alias}}</p>
-                                <p type="text" class="form-control" placeholder="" *ngIf="!telefono.eliminado">{{telefono.telefono.tipo}}</p>
-                                <p type="text" class="form-control" placeholder="" *ngIf="!telefono.eliminado">{{telefono.telefono.numero}}</p>
+                                <p class="form-control text-center" *ngIf="!telefono.eliminado ">{{telefono.telefono.alias}}</p>
+                                <p class="form-control text-center" *ngIf="!telefono.eliminado">{{telefono.telefono.tipo}}</p>
+                                <p class="form-control text-center" *ngIf="!telefono.eliminado">{{telefono.telefono.numero}}</p>
 
                             </div>
-                            <div style="float: right; ">
-                                <button class="btn btn-warning" *ngIf="!telefono.cancelado && !telefono.eliminado" (click)="cancela(telefono.id)">Cancelar</button>
+                            <div style="float: right;">
+                                <button class="btn btn-warning btn-sm" *ngIf="!telefono.cancelado && !telefono.eliminado" (click)="cancela(telefono.id)">Cancelar</button>
                                 <div *ngIf="telefono.cancelado && !telefono.eliminado">
-                                    <button class="btn btn-danger" *ngIf="telefono.cancelado " (click)="eliminar(telefono.id)">Eliminar</button>
+                                    <button class="btn btn-danger btn-sm" *ngIf="telefono.cancelado " (click)="eliminar(telefono.id)">Eliminar</button>
                                 </div>
                             </div>
+                            <br>
                         </div>
                     </div>
                     <br>
                     <br>
-                    <div *ngIf="contacto.telefono.length==0 " class="text-center " style="padding: 20px; ">
+                    <p class="text-center">Registrados</p>
+                    <div *ngIf="contacto.telefono.length==0 " class="text-center ">
                         No hay teléfonos registrados
                     </div>
-                    <div *ngIf="contacto.telefono.length> 0" class="text-center"> Registrados:
-                        <br>
-                        <br>
+                    <div *ngIf="contacto.telefono.length> 0" class="text-center">
+
                         <div *ngFor="let telefono of contacto.telefono">
                             <div class="input-group mb-3">
-                                <p type="text" class="form-control" placeholder="">{{telefono.alias}}</p>
-                                <p type="text" class="form-control" placeholder="">{{telefono.tipo}}</p>
-                                <p type="text" class="form-control" placeholder="">{{telefono.numero}}</p>
+                                <p type="text" class="form-control">{{telefono.alias}}</p>
+                                <p type="text" class="form-control">{{telefono.tipo}}</p>
+                                <p type="text" class="form-control">{{telefono.numero}}</p>
                             </div>
 
                         </div>

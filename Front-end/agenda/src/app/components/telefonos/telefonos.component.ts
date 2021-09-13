@@ -62,10 +62,19 @@ export class TelefonosComponent implements OnInit {
       this.showFail("Hacen falta datos \n\n 😢")
       return
     }else {
-
+      const toString = this.nuevoForm.value.numero+""
+      if(toString.length < 10 || toString.length > 10){
+        this.showFail("El número telefónico es incorrecto")
+        return
+      }else{
       this.carrito_de_telefonos.push(new FormatoTelefonos(this.catidad_de_telefonos,
                  new Telefono(this.nuevoForm.value.alias, this.nuevoForm.value.tipo, this.nuevoForm.value.numero ),false, false))
+      this.submitted=false
+      this.nuevoForm.reset()
+
       this.showSucces("Agregado!")
+        
+      }
     }
   }
 

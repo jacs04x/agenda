@@ -26,16 +26,14 @@
         </div>
         <a href="nuevo"><button class="btn btn-success" >Agregar <i class="fas fa-plus" style="color: white;"></i></button></a>
     </div>
-    <div class="col-md-4 mx-auto contactos" *ngFor="let contacto of agenda">
+    <div class="col-md-3 mx-auto contactos" *ngFor="let contacto of agenda">
         <div class="text-center contactos">
             <div class="row mx-auto">
                 <div class="card">
-                    <div class="card-header">
-                        {{contacto.nombre}} {{contacto.apellidos}}
-                    </div>
                     <div class="card-body">
-                        <button class="btn btn-warning" (click)="editar(contacto)">Editar</button>
-                        <button class="btn btn-danger" (click)="eliminar(contacto._id)">Eliminar</button>
+                        <p>{{contacto.nombre}} {{contacto.apellidos}}</p>
+                        <button class="btn btn-warning btn-sm" (click)="editar(contacto)" style="color: white;">Editar <i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminar(contacto._id)">Eliminar </button>
                     </div>
                 </div>
             </div>
